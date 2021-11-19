@@ -104,7 +104,7 @@ import java.util.*;
 
     }
     public void distribuerCarte(ArrayList<Carte> joueur, int nb){
-        /* ditribue a un joueur donne un nombre nb de carte */
+        /* donne un nombre nb de carte au joueur joueur */
         for(int i=0; i<nb ; i++){
             joueur.add(paquetCarte.get(1));
             paquetCarte.remove(paquetCarte.get(1));
