@@ -107,7 +107,7 @@ import java.util.*;
         }
     }
 
-    public void distribuerJeu(){
+       public void distribuerIerTourJeu(){
         Jeu t = new Jeu() ;
         t.preparerjeu();
         for(ArrayList<Carte> joueur : joueurs){
@@ -133,15 +133,18 @@ import java.util.*;
             System.out.println("voulez vous prendre ?");
             String str= saisieUtilisateur.next();
             if(str=="oui"){
-                t.distribuerCarte(joueur, 1);
-                t
+                t.distribuerCarte(joueur1, 1);
+                t.distribuerdemeTour();
 
             }
         }
-
-    }
-
-
-
-}
     
+    }
+    public void distribuerdemeTour(){
+        Jeu t = new Jeu() ;
+        for(ArrayList<Carte> joueur : joueurs){
+            t.distribuerCarte(joueur, 8-joueur.size());
+
+
+  }
+}
