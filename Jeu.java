@@ -2,13 +2,19 @@ import java.util.*;
 
 
 ;public class Jeu {
-    public ArrayList<Carte> paquetCarte = new ArrayList<Carte>();
+	/* on cree un paquet de carte */
+    public ArrayList<Carte> paquetCarte = new ArrayList<Carte>();  
+    /*on cree un paquet pour chaque joueur*/
     public ArrayList<Carte> joueur1 = new ArrayList<Carte>();
     public ArrayList<Carte> joueur2 = new ArrayList<Carte>();
     public ArrayList<Carte> joueur3 = new ArrayList<Carte>();
     public ArrayList<Carte> joueur4 = new ArrayList<Carte>();
-    /*on creer une super liste de joueur pour y acceder plus facilment*/
+    /*on cree une liste de joueur pour connaitre l'ordre de passage */
     public ArrayList<ArrayList<Carte>> joueurs = new ArrayList<ArrayList<Carte>>();
+    /* on cree une liste qui copie la liste des joueurs*/
+    /*qui changera en fonction des tours*/
+    public ArrayList<ArrayList<Carte>> joueursTour = joueurs;
+    public ArrayList<Carte> plateau = new ArrayList<Carte>();
     public Scanner saisieUtilisateur = new Scanner(System.in);
 
         public Carte asCo = new Carte("rouge","coeur","as",32);
@@ -49,7 +55,7 @@ import java.util.*;
         System.out.println("debut du jeu");
         Jeu x = new Jeu() ;
         x.preparerjeu();
-        x.distribuerJeu();
+        x.distribuerIerTourJeu();
         x.atoutChoixJeu();
         
     }
@@ -127,33 +133,60 @@ import java.util.*;
     public void atoutChoixJeu(){
         /* montre les cartes au joueur et la carte au centre, leur demande si il veulent prendre */
         /*si ils prennent, donne la carte et donne les cartes manquantes aux joueurs */
-        /*in progress*/
         Jeu t = new Jeu();
         String str= "pas encore" ;
-        for(ArrayList<Carte> joueur : joueurs){
-            while (str != "oui")
-            System.out.println(paquetCarte.get(1).toString());
-            System.out.println("------------");
-            System.out.println("tu a : ");
-            for(Carte i:joueur){
-                System.out.println(i.toString());
-            }
-            System.out.println("voulez vous prendre ?");
-            String str= saisieUtilisateur.next();
-            if(str=="oui"){
-                t.distribuerCarte(joueur1, 1);
-                t.distribuerdemeTour();
-
-            }
+        for(int tour=0;tour<2; tour++) { 
+	        for(ArrayList<Carte> joueurss : joueurs){
+	            while (str != "oui") {
+		            System.out.println(paquetCarte.get(1).toString());
+		            System.out.println("------------");
+		            System.out.println("tu a : ");
+		            t.montrerCarteJeu(joueurss);}		          
+		            System.out.println("voulez vous prendre ?");
+		            str= saisieUtilisateur.next();
+		            if(str=="oui"){
+		                t.distribuerCarte(joueur1, 1);
+		                t.distribuerdemeTour();
+		                if(tour==1) {
+		                	atout = paquetCarte.get(1).getMotif();
+		                }
+		                if(tour==2) {
+		                	atout = saisieUtilisateur.next();
+		                }
+		            }
+	            }
+        	}
         }
-    
-    }
     public void distribuerdemeTour(){
-        /*distribue les cartes pour que tout les joeurs aient 8 cartes */
+        /*distribue les cartes pour que tout les joueurs aient 8 cartes */
         Jeu t = new Jeu() ;
         for(ArrayList<Carte> joueur : joueurs){
             t.distribuerCarte(joueur, 8-joueur.size());
-
-
-  }
-}
+        } 
+    }
+    public void tourJeu() {
+    	/* deroulement d'un tour */
+    	/* in progress */
+    	Jeu t = new Jeu();
+    	for(ArrayList<Carte> joueurss : joueursTour){
+    		if(plateau.size()== 0) {
+    			t.montrerCarteJeu(joueurss);
+    			System.out.println("que veux tu jouer ?");
+    			String str= saisieUtilisateur.next();
+    			}
+    		else {
+    			t.montrerCarteJeu(joueurss);
+    			t.montrerCarteJeu(plateau);
+    			String str= saisieUtilisateur.next();
+    			if (plateau.get(1).getMotif()=str
+    			}
+    	}
+    }
+    		
+    	
+    public void montrerCarteJeu(ArrayList<Carte> joueur) {
+    	/*montre au joueur ces cartes */
+    	System.out.println("tu a : ");
+    	for(Carte i: joueur ){
+            System.out.println(i.toString());  }
+    }
