@@ -7,6 +7,7 @@ import java.util.*;
     public ArrayList<Carte> joueur2 = new ArrayList<Carte>();
     public ArrayList<Carte> joueur3 = new ArrayList<Carte>();
     public ArrayList<Carte> joueur4 = new ArrayList<Carte>();
+    /*on creer une super liste de joueur pour y acceder plus facilment*/
     public ArrayList<ArrayList<Carte>> joueurs = new ArrayList<ArrayList<Carte>>();
     public Scanner saisieUtilisateur = new Scanner(System.in);
 
@@ -44,6 +45,7 @@ import java.util.*;
         public Carte septT = new Carte ("noir","trefle","sept",32);
 
     public void jeuJeu(){
+        /*deroulement du jeu*/
         System.out.println("debut du jeu");
         Jeu x = new Jeu() ;
         x.preparerjeu();
@@ -53,6 +55,7 @@ import java.util.*;
     }
 
     public void preparerjeu(){
+        /* met les cartes dans le paquet et le melange */
 
 
     
@@ -101,6 +104,7 @@ import java.util.*;
 
     }
     public void distribuerCarte(ArrayList<Carte> joueur, int nb){
+        /* ditribue a un joueur donne un nombre nb de carte */
         for(int i=0; i<nb ; i++){
             joueur.add(paquetCarte.get(1));
             paquetCarte.remove(paquetCarte.get(1));
@@ -108,6 +112,7 @@ import java.util.*;
     }
 
        public void distribuerIerTourJeu(){
+           /*distribue les cartes du premier tour donc 3 cartes puis 2 cartes*/
         Jeu t = new Jeu() ;
         t.preparerjeu();
         for(ArrayList<Carte> joueur : joueurs){
@@ -120,6 +125,9 @@ import java.util.*;
 
     }
     public void atoutChoixJeu(){
+        /* montre les cartes au joueur et la carte au centre, leur demande si il veulent prendre */
+        /*si ils prennent, donne la carte et donne les cartes manquantes aux joueurs */
+        /*in progress*/
         Jeu t = new Jeu();
         String str= "pas encore" ;
         for(ArrayList<Carte> joueur : joueurs){
@@ -141,6 +149,7 @@ import java.util.*;
     
     }
     public void distribuerdemeTour(){
+        /*distribue les cartes pour que tout les joeurs aient 8 cartes */
         Jeu t = new Jeu() ;
         for(ArrayList<Carte> joueur : joueurs){
             t.distribuerCarte(joueur, 8-joueur.size());
