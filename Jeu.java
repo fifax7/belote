@@ -112,8 +112,8 @@ import java.util.*;
     public void distribuerCarte(ArrayList<Carte> joueur, int nb){
         /* donne un nombre nb de carte au joueur joueur */
         for(int i=0; i<nb ; i++){
-            joueur.add(paquetCarte.get(1));
-            paquetCarte.remove(paquetCarte.get(1));
+            joueur.add(paquetCarte.get(0));
+            paquetCarte.remove(paquetCarte.get(0));
         }
     }
 
@@ -138,7 +138,7 @@ import java.util.*;
         for(int tour=0;tour<2; tour++) { 
 	        for(ArrayList<Carte> joueurss : joueurs){
 	            while (str != "oui") {
-		            System.out.println(paquetCarte.get(1).toString());
+		            System.out.println(paquetCarte.get(0).toString());
 		            System.out.println("------------");
 		            System.out.println("tu a : ");
 		            t.montrerCarteJeu(joueurss);}		          
@@ -148,7 +148,7 @@ import java.util.*;
 		                t.distribuerCarte(joueur1, 1);
 		                t.distribuerdemeTour();
 		                if(tour==1) {
-		                	atout = paquetCarte.get(1).getMotif();
+		                	atout = paquetCarte.get(0).getMotif();
 		                }
 		                if(tour==2) {
 		                	atout = saisieUtilisateur.next();
@@ -168,18 +168,36 @@ import java.util.*;
     	/* deroulement d'un tour */
     	/* in progress */
     	Jeu t = new Jeu();
+        int compteur = 0;
     	for(ArrayList<Carte> joueurss : joueursTour){
     		if(plateau.size()== 0) {
+                /*le premier joueur choisit la carte au centre */
     			t.montrerCarteJeu(joueurss);
     			System.out.println("que veux tu jouer ?");
-    			String str= saisieUtilisateur.next();
+    			int str= saisieUtilisateur.nextInt();
+                plateau.add(joueurss.get(str));
+                joueurss.remove(plateau.get(compteur));
     			}
     		else {
+                t.montrerCarteJeu(plateau);
+                System.out.println("voici tes cartes");
     			t.montrerCarteJeu(joueurss);
-    			t.montrerCarteJeu(plateau);
-    			String str= saisieUtilisateur.next();
-    			if (plateau.get(1).getMotif()=str
-    			}
+    			
+    			int str= saisieUtilisateur.nextInt();
+
+    			if (plateau.get(0).getMotif()!= joueurss.get(str).getMotif()){
+                    for (Carte cartess : joueurss){
+                        if (cartess.getMotif() == plateau.get(0).getMotif()){
+                            System.out.println("tu ne peut pas jouer ca ");
+                            
+                        }
+                    }
+
+                }
+                plateau.add(joueurss.get(str));
+                joueurss.remove(plateau.get(compteur));
+            }
+            compteur+=1;
     	}
     }
     		
@@ -190,3 +208,4 @@ import java.util.*;
     	for(Carte i: joueur ){
             System.out.println(i.toString());  }
     }
+}
