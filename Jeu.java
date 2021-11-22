@@ -169,6 +169,7 @@ import java.util.*;
     	/* in progress */
     	Jeu t = new Jeu();
         int compteur = 0;
+        boolean bouclestop = true;
     	for(ArrayList<Carte> joueurss : joueursTour){
     		if(plateau.size()== 0) {
                 /*le premier joueur choisit la carte au centre */
@@ -179,6 +180,7 @@ import java.util.*;
                 joueurss.remove(plateau.get(compteur));
     			}
     		else {
+                /*les autres joueurs choisissent leur cartes et la methode verifie qu'ils aient le droit de jouer cette carte*/
                 t.montrerCarteJeu(plateau);
                 System.out.println("voici tes cartes");
     			t.montrerCarteJeu(joueurss);
@@ -186,10 +188,17 @@ import java.util.*;
     			int str= saisieUtilisateur.nextInt();
 
     			if (plateau.get(0).getMotif()!= joueurss.get(str).getMotif()){
-                    for (Carte cartess : joueurss){
-                        if (cartess.getMotif() == plateau.get(0).getMotif()){
+                    for (int i=0 ; i<joueurss.size() && bouclestop ; i++ ){
+                        if (joueurss.get(i).getMotif() == plateau.get(0).getMotif()){
                             System.out.println("tu ne peut pas jouer ca ");
+                             bouclestop = false;
                             
+                        }
+                        if(bouclestop&&joueurss.get(i).getMotif()==atout){
+                            /* to do */
+                            /* gerer si c'est bien une carte atout */
+                            /*si oui regarder si il ne dois pas jouer au dessus d un autres atout */
+                            /*si, il est obligé de jouer de l'atout ( attention il peut "pisser") */
                         }
                     }
 
