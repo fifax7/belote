@@ -11,18 +11,12 @@ import java.util.*;
     public ArrayList<Carte> joueur4 = new ArrayList<Carte>();
     /*on cree une liste de joueur pour connaitre l'ordre de passage */
     public ArrayList<ArrayList<Carte>> joueurs = new ArrayList<ArrayList<Carte>>();
-    /*joueurs.add(joueur1);
-    joueurs.add(joueur2);
-    joueurs.add(joueur3);
-    joueurs.add(joueur4);*/
-    /*on cree les deux equipes */
+   
+    /*on cree les deux equipes*/
     public ArrayList<ArrayList<Carte>> premiereEquipe = new ArrayList<ArrayList<Carte>>();
     public ArrayList<ArrayList<Carte>> deuxiemeEquipe = new ArrayList<ArrayList<Carte>>();
 
-    /* premiereEquipe.add(joueur1);
-    premiereEquipe.add(joueur3);
-    deuxiemeEquipe.add(joueur2);
-    deuxiemeEquipe.add(joueur4);*/
+    
 
     /* on cree une liste qui copie la liste des joueurs*/
     /*qui changera en fonction des tours*/
@@ -71,6 +65,8 @@ import java.util.*;
         Jeu x = new Jeu() ;
         x.preparerjeu();
         System.out.println("le jeu est preparé");
+        x.preparerEquipeJeu();
+        System.out.println("les equipes sont preparées");
         x.distribuerIerTourJeu();
         System.out.println("les cartes sont distribuées");
         x.atoutChoixJeu();
@@ -126,6 +122,24 @@ import java.util.*;
 
 
     }
+    
+    public void preparerEquipeJeu(){
+        premiereEquipe.add(joueur1);
+        premiereEquipe.add(joueur3);
+        deuxiemeEquipe.add(joueur2);
+        deuxiemeEquipe.add(joueur4);
+
+        joueurs.add(joueur1);
+        joueurs.add(joueur3);
+        joueurs.add(joueur2);
+        joueurs.add(joueur4);
+
+        joueursTour.add(joueur1);
+        joueursTour.add(joueur3);
+        joueursTour.add(joueur2);
+        joueursTour.add(joueur4);
+    }
+
     public void distribuerCarte(ArrayList<Carte> joueur, int nb){
         /* donne un nombre nb de carte au joueur joueur */
         for(int i=0; i<nb ; i++){
@@ -139,6 +153,13 @@ import java.util.*;
         Jeu t = new Jeu() ;
         t.preparerjeu();
         System.out.println(" je distribue 3 cartes ");
+        System.out.println("la taille joueurs"+joueurs.size());
+        System.out.println("la taille joueurs 1"+joueur1.size());
+        System.out.println("la taille joeurs tour "+joueursTour.size());
+        System.out.println("la taille equiupe"+premiereEquipe.size());
+        for(ArrayList<Carte> joueur : joueurs){
+            System.out.println(joueur);
+        }
         for(ArrayList<Carte> joueur : joueurs){
             System.out.println(" tiens 3 cartes ");
             t.distribuerCarte(joueur, 3);
@@ -147,6 +168,7 @@ import java.util.*;
         for(ArrayList<Carte> joueur : joueurs){
             t.distribuerCarte(joueur, 2);
         }
+
 
 
     }
@@ -233,11 +255,12 @@ import java.util.*;
                     /* to do */
                     /* gerer si c'est bien une carte atout */
                     /*si oui regarder si il ne dois pas jouer au dessus d un autres atout */
-                    /*si, il est obligé de jouer de l'atout ( attention il peut "pisser") */
             
             } 
             if(bouclestop){
                 for (int i=0 ; i<joueur.size() && bouclestop ; i++ ){
+                    /* si tu as un atout tu ne peux pas pisser */
+                    /* sauf si c'est le joueur de ton equipe qui gagne */
                     if (joueur.get(i).getMotif() == atout){
                         System.out.println("tu ne peut pas jouer ca ");
                          bouclestop = false;
