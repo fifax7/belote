@@ -11,6 +11,19 @@ import java.util.*;
     public ArrayList<Carte> joueur4 = new ArrayList<Carte>();
     /*on cree une liste de joueur pour connaitre l'ordre de passage */
     public ArrayList<ArrayList<Carte>> joueurs = new ArrayList<ArrayList<Carte>>();
+    /*joueurs.add(joueur1);
+    joueurs.add(joueur2);
+    joueurs.add(joueur3);
+    joueurs.add(joueur4);*/
+    /*on cree les deux equipes */
+    public ArrayList<ArrayList<Carte>> premiereEquipe = new ArrayList<ArrayList<Carte>>();
+    public ArrayList<ArrayList<Carte>> deuxiemeEquipe = new ArrayList<ArrayList<Carte>>();
+
+    /* premiereEquipe.add(joueur1);
+    premiereEquipe.add(joueur3);
+    deuxiemeEquipe.add(joueur2);
+    deuxiemeEquipe.add(joueur4);*/
+
     /* on cree une liste qui copie la liste des joueurs*/
     /*qui changera en fonction des tours*/
     public ArrayList<ArrayList<Carte>> joueursTour = joueurs;
@@ -50,12 +63,16 @@ import java.util.*;
         public Carte septP = new Carte ("noir","pique","sept",32);
         public Carte septT = new Carte ("noir","trefle","sept",32);
 
+    public String atout = "rien";
+
     public void jeuJeu(){
         /*deroulement du jeu*/
-        System.out.println("debut du jeu");
+        System.out.println("début du jeu");
         Jeu x = new Jeu() ;
         x.preparerjeu();
+        System.out.println("le jeu est preparé");
         x.distribuerIerTourJeu();
+        System.out.println("les cartes sont distribuées");
         x.atoutChoixJeu();
         
     }
@@ -121,9 +138,12 @@ import java.util.*;
            /*distribue les cartes du premier tour donc 3 cartes puis 2 cartes*/
         Jeu t = new Jeu() ;
         t.preparerjeu();
+        System.out.println(" je distribue 3 cartes ");
         for(ArrayList<Carte> joueur : joueurs){
+            System.out.println(" tiens 3 cartes ");
             t.distribuerCarte(joueur, 3);
         }
+        System.out.println(" je distribue 2 cartes ");
         for(ArrayList<Carte> joueur : joueurs){
             t.distribuerCarte(joueur, 2);
         }
@@ -168,46 +188,10 @@ import java.util.*;
     	/* deroulement d'un tour */
     	/* in progress */
     	Jeu t = new Jeu();
-        int compteur = 0;
-        boolean bouclestop = true;
-    	for(ArrayList<Carte> joueurss : joueursTour){
-    		if(plateau.size()== 0) {
-                /*le premier joueur choisit la carte au centre */
-    			t.montrerCarteJeu(joueurss);
-    			System.out.println("que veux tu jouer ?");
-    			int str= saisieUtilisateur.nextInt();
-                plateau.add(joueurss.get(str));
-                joueurss.remove(plateau.get(compteur));
-    			}
-    		else {
-                /*les autres joueurs choisissent leur cartes et la methode verifie qu'ils aient le droit de jouer cette carte*/
-                t.montrerCarteJeu(plateau);
-                System.out.println("voici tes cartes");
-    			t.montrerCarteJeu(joueurss);
-    			
-    			int str= saisieUtilisateur.nextInt();
-
-    			if (plateau.get(0).getMotif()!= joueurss.get(str).getMotif()){
-                    for (int i=0 ; i<joueurss.size() && bouclestop ; i++ ){
-                        if (joueurss.get(i).getMotif() == plateau.get(0).getMotif()){
-                            System.out.println("tu ne peut pas jouer ca ");
-                             bouclestop = false;
-                            
-                        }
-                        if(bouclestop&&joueurss.get(i).getMotif()==atout){
-                            /* to do */
-                            /* gerer si c'est bien une carte atout */
-                            /*si oui regarder si il ne dois pas jouer au dessus d un autres atout */
-                            /*si, il est obligé de jouer de l'atout ( attention il peut "pisser") */
-                        }
-                    }
-
-                }
-                plateau.add(joueurss.get(str));
-                joueurss.remove(plateau.get(compteur));
-            }
-            compteur+=1;
-    	}
+        t.premierjoueurJeu(joueursTour.get(0));
+        for(int i = 1 ; i<4;i++){
+            t.autresjoueurJeu(joueursTour.get(i));
+        }
     }
     		
     	
@@ -216,5 +200,50 @@ import java.util.*;
     	System.out.println("tu a : ");
     	for(Carte i: joueur ){
             System.out.println(i.toString());  }
+    }
+    public void premierjoueurJeu(ArrayList<Carte> joueur){
+        /*le premier joueur choisit la carte au centre */
+        Jeu t =new Jeu();
+        t.montrerCarteJeu(joueur);
+    	System.out.println("que veux tu jouer ?");
+    	int str= saisieUtilisateur.nextInt();
+        plateau.add(joueur.get(str));
+        joueur.remove(plateau.get(0));
+
+    }
+    public void autresjoueurJeu(ArrayList<Carte> joueur){
+        /*les autres joueurs choisissent leur cartes et la methode verifie qu'ils aient le droit de jouer cette carte*/
+        Jeu t =new Jeu();
+        t.montrerCarteJeu(plateau);
+        System.out.println("voici tes cartes");
+        t.montrerCarteJeu(joueur);
+        boolean bouclestop = true;
+        
+        int str= saisieUtilisateur.nextInt();
+
+        if (plateau.get(0).getMotif()!= joueur.get(str).getMotif()){
+            for (int i=0 ; i<joueur.size() && bouclestop ; i++ ){
+                if (joueur.get(i).getMotif() == plateau.get(0).getMotif()){
+                    System.out.println("tu ne peut pas jouer ca ");
+                     bouclestop = false;
+                    
+                }
+            }
+            if(bouclestop&&joueur.get(str).getMotif()==atout){
+                    /* to do */
+                    /* gerer si c'est bien une carte atout */
+                    /*si oui regarder si il ne dois pas jouer au dessus d un autres atout */
+                    /*si, il est obligé de jouer de l'atout ( attention il peut "pisser") */
+            
+            } 
+            if(bouclestop){
+                for (int i=0 ; i<joueur.size() && bouclestop ; i++ ){
+                    if (joueur.get(i).getMotif() == atout){
+                        System.out.println("tu ne peut pas jouer ca ");
+                         bouclestop = false;
+                    } 
+                }      
+            }
+        }
     }
 }
