@@ -20,7 +20,7 @@ import java.util.*;
 
     /* on cree une liste qui copie la liste des joueurs*/
     /*qui changera en fonction des tours*/
-    public ArrayList<ArrayList<Carte>> joueursTour = joueurs;
+    public ArrayList<ArrayList<Carte>> joueurstour = new ArrayList<ArrayList<Carte>>();
     public ArrayList<Carte> plateau = new ArrayList<Carte>();
     public Scanner saisieUtilisateur = new Scanner(System.in);
 
@@ -68,8 +68,8 @@ import java.util.*;
         x.preparerEquipeJeu();
         System.out.println("les equipes sont preparées");
         x.distribuerIerTourJeu();
-        System.out.println("les cartes sont distribuées");
-        x.atoutChoixJeu();
+        /*System.out.println("les cartes sont distribuées");
+        x.atoutChoixJeu();*/
         
     }
 
@@ -128,16 +128,15 @@ import java.util.*;
         premiereEquipe.add(joueur3);
         deuxiemeEquipe.add(joueur2);
         deuxiemeEquipe.add(joueur4);
-
+        System.out.println("la taille joueurs"+joueurs.size());
         joueurs.add(joueur1);
         joueurs.add(joueur3);
         joueurs.add(joueur2);
         joueurs.add(joueur4);
+        System.out.println("la taille joueurs"+joueurs.size());
+        joueurstour=joueurs;
+        System.out.println("la taille joueurs"+joueurs.size());
 
-        joueursTour.add(joueur1);
-        joueursTour.add(joueur3);
-        joueursTour.add(joueur2);
-        joueursTour.add(joueur4);
     }
 
     public void distribuerCarte(ArrayList<Carte> joueur, int nb){
@@ -148,14 +147,14 @@ import java.util.*;
         }
     }
 
-       public void distribuerIerTourJeu(){
+    public void distribuerIerTourJeu(){
            /*distribue les cartes du premier tour donc 3 cartes puis 2 cartes*/
         Jeu t = new Jeu() ;
         t.preparerjeu();
         System.out.println(" je distribue 3 cartes ");
         System.out.println("la taille joueurs"+joueurs.size());
         System.out.println("la taille joueurs 1"+joueur1.size());
-        System.out.println("la taille joeurs tour "+joueursTour.size());
+        System.out.println("la taille joeurs tour "+joueurstour.size());
         System.out.println("la taille equiupe"+premiereEquipe.size());
         for(ArrayList<Carte> joueur : joueurs){
             System.out.println(joueur);
@@ -210,9 +209,9 @@ import java.util.*;
     	/* deroulement d'un tour */
     	/* in progress */
     	Jeu t = new Jeu();
-        t.premierjoueurJeu(joueursTour.get(0));
+        t.premierjoueurJeu(joueurstour.get(0));
         for(int i = 1 ; i<4;i++){
-            t.autresjoueurJeu(joueursTour.get(i));
+            t.autresjoueurJeu(joueurstour.get(i));
         }
     }
     		
