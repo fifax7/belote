@@ -241,7 +241,7 @@ import java.util.*;
         
         int str= saisieUtilisateur.nextInt();
 
-        if (plateau.get(0).getMotif()!= joueur.get(str).getMotif()){
+        if (!plateau.get(0).getMotif().equals(joueur.get(str).getMotif()){
             for (int i=0 ; i<joueur.size() && bouclestop ; i++ ){
                 if (joueur.get(i).getMotif().equals(plateau.get(0).getMotif()) ){
                     System.out.println("tu ne peut pas jouer ca ");
