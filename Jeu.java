@@ -15,7 +15,6 @@ import java.util.*;
     /*on cree les deux equipes*/
     public ArrayList<ArrayList<Carte>> premiereEquipe = new ArrayList<ArrayList<Carte>>();
     public ArrayList<ArrayList<Carte>> deuxiemeEquipe = new ArrayList<ArrayList<Carte>>();
-
     
 
     /* on cree une liste qui copie la liste des joueurs*/
@@ -24,51 +23,51 @@ import java.util.*;
     public ArrayList<Carte> plateau = new ArrayList<Carte>();
     public Scanner saisieUtilisateur = new Scanner(System.in);
 
-        public Carte asCo = new Carte("rouge","coeur","as",32);
-        public Carte asCa = new Carte("rouge","carreaux","as",32);
-        public Carte asP = new Carte ("noir","pique","as",32);
-        public Carte asT = new Carte ("noir","trefle","as",32);
-        public Carte roiCo = new Carte("rouge","coeur","roi",32);
-        public Carte roiCa = new Carte("rouge","carreaux","roi",32);
-        public Carte roiP = new Carte ("noir","pique","roi",32);
-        public Carte roiT = new Carte ("noir","trefle","roi",32);
-        public Carte dameCo = new Carte("rouge","coeur","dame",32);
-        public Carte dameCa = new Carte("rouge","carreaux","dame",32);
-        public Carte dameP = new Carte ("noir","pique","dame",32);
-        public Carte dameT = new Carte ("noir","trefle","dame",32);
-        public Carte valaisCo = new Carte("rouge","coeur","valais",32);
-        public Carte valaisCa = new Carte("rouge","carreaux","valais",32);
-        public Carte valaisP = new Carte ("noir","pique","valais",32);
-        public Carte valaisT = new Carte ("noir","trefle","valais",32);
-        public Carte dixCo = new Carte("rouge","coeur","dix",32);
-        public Carte dixCa = new Carte("rouge","carreaux","dix",32);
-        public Carte dixP = new Carte ("noir","pique","dix",32);
-        public Carte dixT = new Carte ("noir","trefle","dix",32);
-        public Carte neufCo = new Carte("rouge","coeur","neuf",32);
-        public Carte neufCa = new Carte("rouge","carreaux","neuf",32);
-        public Carte neufP = new Carte ("noir","pique","neuf",32);
-        public Carte neufT = new Carte ("noir","trefle","neuf",32);
-        public Carte huitCo = new Carte("rouge","coeur","huit",32);
-        public Carte huitCa = new Carte("rouge","carreaux","huit",32);
-        public Carte huitP = new Carte ("noir","pique","huit",32);
-        public Carte huitT = new Carte ("noir","trefle","huit",32);
-        public Carte septCo = new Carte("rouge","coeur","sept",32);
-        public Carte septCa = new Carte("rouge","carreaux","sept",32);
-        public Carte septP = new Carte ("noir","pique","sept",32);
-        public Carte septT = new Carte ("noir","trefle","sept",32);
+        public Carte asCo = new Carte("rouge","coeur","as",11,32);
+        public Carte asCa = new Carte("rouge","carreaux","as",11,32);
+        public Carte asP = new Carte ("noir","pique","as",11,32);
+        public Carte asT = new Carte ("noir","trefle","as",11,32);
+        public Carte roiCo = new Carte("rouge","coeur","roi",4,32);
+        public Carte roiCa = new Carte("rouge","carreaux","roi",4,32);
+        public Carte roiP = new Carte ("noir","pique","roi",4,32);
+        public Carte roiT = new Carte ("noir","trefle","roi",4,32);
+        public Carte dameCo = new Carte("rouge","coeur","dame",3,32);
+        public Carte dameCa = new Carte("rouge","carreaux","dame",3,32);
+        public Carte dameP = new Carte ("noir","pique","dame",3,32);
+        public Carte dameT = new Carte ("noir","trefle","dame",3,32);
+        public Carte valaisCo = new Carte("rouge","coeur","valais",2,32);
+        public Carte valaisCa = new Carte("rouge","carreaux","valais",2,32);
+        public Carte valaisP = new Carte ("noir","pique","valais",2,32);
+        public Carte valaisT = new Carte ("noir","trefle","valais",2,32);
+        public Carte dixCo = new Carte("rouge","coeur","dix",10,32);
+        public Carte dixCa = new Carte("rouge","carreaux","dix",10,32);
+        public Carte dixP = new Carte ("noir","pique","dix",10,32);
+        public Carte dixT = new Carte ("noir","trefle","dix",10,32);
+        public Carte neufCo = new Carte("rouge","coeur","neuf",0,32);
+        public Carte neufCa = new Carte("rouge","carreaux","neuf",0,32);
+        public Carte neufP = new Carte ("noir","pique","neuf",0,32);
+        public Carte neufT = new Carte ("noir","trefle","neuf",0,32);
+        public Carte huitCo = new Carte("rouge","coeur","huit",0,32);
+        public Carte huitCa = new Carte("rouge","carreaux","huit",0,32);
+        public Carte huitP = new Carte ("noir","pique","huit",0,32);
+        public Carte huitT = new Carte ("noir","trefle","huit",0,32);
+        public Carte septCo = new Carte("rouge","coeur","sept",0,32);
+        public Carte septCa = new Carte("rouge","carreaux","sept",0,32);
+        public Carte septP = new Carte ("noir","pique","sept",0,32);
+        public Carte septT = new Carte ("noir","trefle","sept",0,32);
 
     public String atout = "rien";
 
     public void jeuJeu(){
         /*deroulement du jeu*/
-        System.out.println("début du jeu");
+        System.out.println("dÃ©but du jeu");
         Jeu x = new Jeu() ;
         x.preparerjeu();
-        System.out.println("le jeu est preparé");
+        System.out.println("le jeu est preparÃ©");
         x.preparerEquipeJeu();
-        System.out.println("les equipes sont preparées");
+        System.out.println("les equipes sont preparÃ©es");
         x.distribuerIerTourJeu();
-        /*System.out.println("les cartes sont distribuées");
+        /*System.out.println("les cartes sont distribuÃ©es");
         x.atoutChoixJeu();*/
         
     }
@@ -244,23 +243,23 @@ import java.util.*;
 
         if (plateau.get(0).getMotif()!= joueur.get(str).getMotif()){
             for (int i=0 ; i<joueur.size() && bouclestop ; i++ ){
-                if (joueur.get(i).getMotif() == plateau.get(0).getMotif()){
+                if (joueur.get(i).getMotif().equals(plateau.get(0).getMotif()) ){
                     System.out.println("tu ne peut pas jouer ca ");
                      bouclestop = false;
                     
                 }
             }
-            if(bouclestop&&joueur.get(str).getMotif()==atout){
+            if(bouclestop&&joueur.get(str).getMotif().equals(atout)){
                     /* to do */
                     /* gerer si c'est bien une carte atout */
                     /*si oui regarder si il ne dois pas jouer au dessus d un autres atout */
-            
+            	
             } 
             if(bouclestop){
                 for (int i=0 ; i<joueur.size() && bouclestop ; i++ ){
                     /* si tu as un atout tu ne peux pas pisser */
                     /* sauf si c'est le joueur de ton equipe qui gagne */
-                    if (joueur.get(i).getMotif() == atout){
+                    if (joueur.get(i).getMotif().equals(atout) ){
                         System.out.println("tu ne peut pas jouer ca ");
                          bouclestop = false;
                     } 
