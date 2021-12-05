@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-;public class Jeu {
+public class Jeu {
 	/* on cree un paquet de carte */
     public ArrayList<Carte> paquetCarte = new ArrayList<Carte>();  
     /*on cree un paquet pour chaque joueur*/
@@ -23,56 +23,56 @@ import java.util.*;
     public ArrayList<Carte> plateau = new ArrayList<Carte>();
     public Scanner saisieUtilisateur = new Scanner(System.in);
 
-        public Carte asCo = new Carte("rouge","coeur","as",11,32);
-        public Carte asCa = new Carte("rouge","carreaux","as",11,32);
-        public Carte asP = new Carte ("noir","pique","as",11,32);
-        public Carte asT = new Carte ("noir","trefle","as",11,32);
-        public Carte roiCo = new Carte("rouge","coeur","roi",4,32);
-        public Carte roiCa = new Carte("rouge","carreaux","roi",4,32);
-        public Carte roiP = new Carte ("noir","pique","roi",4,32);
-        public Carte roiT = new Carte ("noir","trefle","roi",4,32);
-        public Carte dameCo = new Carte("rouge","coeur","dame",3,32);
-        public Carte dameCa = new Carte("rouge","carreaux","dame",3,32);
-        public Carte dameP = new Carte ("noir","pique","dame",3,32);
-        public Carte dameT = new Carte ("noir","trefle","dame",3,32);
-        public Carte valaisCo = new Carte("rouge","coeur","valais",2,32);
-        public Carte valaisCa = new Carte("rouge","carreaux","valais",2,32);
-        public Carte valaisP = new Carte ("noir","pique","valais",2,32);
-        public Carte valaisT = new Carte ("noir","trefle","valais",2,32);
-        public Carte dixCo = new Carte("rouge","coeur","dix",10,32);
-        public Carte dixCa = new Carte("rouge","carreaux","dix",10,32);
-        public Carte dixP = new Carte ("noir","pique","dix",10,32);
-        public Carte dixT = new Carte ("noir","trefle","dix",10,32);
-        public Carte neufCo = new Carte("rouge","coeur","neuf",0,32);
-        public Carte neufCa = new Carte("rouge","carreaux","neuf",0,32);
-        public Carte neufP = new Carte ("noir","pique","neuf",0,32);
-        public Carte neufT = new Carte ("noir","trefle","neuf",0,32);
-        public Carte huitCo = new Carte("rouge","coeur","huit",0,32);
-        public Carte huitCa = new Carte("rouge","carreaux","huit",0,32);
-        public Carte huitP = new Carte ("noir","pique","huit",0,32);
-        public Carte huitT = new Carte ("noir","trefle","huit",0,32);
-        public Carte septCo = new Carte("rouge","coeur","sept",0,32);
-        public Carte septCa = new Carte("rouge","carreaux","sept",0,32);
-        public Carte septP = new Carte ("noir","pique","sept",0,32);
-        public Carte septT = new Carte ("noir","trefle","sept",0,32);
+    public Carte asCo = new Carte("rouge","coeur","as",11,32);
+    public Carte asCa = new Carte("rouge","carreaux","as",11,32);
+    public Carte asP = new Carte ("noir","pique","as",11,32);
+    public Carte asT = new Carte ("noir","trefle","as",11,32);
+    public Carte roiCo = new Carte("rouge","coeur","roi",4,32);
+    public Carte roiCa = new Carte("rouge","carreaux","roi",4,32);
+    public Carte roiP = new Carte ("noir","pique","roi",4,32);
+    public Carte roiT = new Carte ("noir","trefle","roi",4,32);
+    public Carte dameCo = new Carte("rouge","coeur","dame",3,32);
+    public Carte dameCa = new Carte("rouge","carreaux","dame",3,32);
+    public Carte dameP = new Carte ("noir","pique","dame",3,32);
+    public Carte dameT = new Carte ("noir","trefle","dame",3,32);
+    public Carte valaisCo = new Carte("rouge","coeur","valais",2,32);
+    public Carte valaisCa = new Carte("rouge","carreaux","valais",2,32);
+    public Carte valaisP = new Carte ("noir","pique","valais",2,32);
+    public Carte valaisT = new Carte ("noir","trefle","valais",2,32);
+    public Carte dixCo = new Carte("rouge","coeur","dix",10,32);
+    public Carte dixCa = new Carte("rouge","carreaux","dix",10,32);
+    public Carte dixP = new Carte ("noir","pique","dix",10,32);
+    public Carte dixT = new Carte ("noir","trefle","dix",10,32);
+    public Carte neufCo = new Carte("rouge","coeur","neuf",0,32);
+    public Carte neufCa = new Carte("rouge","carreaux","neuf",0,32);
+    public Carte neufP = new Carte ("noir","pique","neuf",0,32);
+    public Carte neufT = new Carte ("noir","trefle","neuf",0,32);
+    public Carte huitCo = new Carte("rouge","coeur","huit",0,32);
+    public Carte huitCa = new Carte("rouge","carreaux","huit",0,32);
+    public Carte huitP = new Carte ("noir","pique","huit",0,32);
+    public Carte huitT = new Carte ("noir","trefle","huit",0,32);
+    public Carte septCo = new Carte("rouge","coeur","sept",0,32);
+    public Carte septCa = new Carte("rouge","carreaux","sept",0,32);
+    public Carte septP = new Carte ("noir","pique","sept",0,32);
+    public Carte septT = new Carte ("noir","trefle","sept",0,32);
 
     public String atout = "rien";
 
     public void jeuJeu(){
         /*deroulement du jeu*/
         System.out.println("dÃ©but du jeu");
-        Jeu x = new Jeu() ;
-        x.preparerjeu();
+        Jeu action = new Jeu() ;
+        action.preparerjeu();
         System.out.println("equipe la taille du paquet est : "+paquetCarte.size());
         System.out.println("le jeu est preparÃ©");
 
-        x.preparerEquipeJeu();
+        action.preparerEquipeJeu();
         System.out.println("les equipes sont preparÃ©es");
         System.out.println("1 la taille du paquet est : "+paquetCarte.size());
-        x.distribuerIerTourJeu();
+        action.distribuerIerTourJeu();
         System.out.println("1 la taille du paquet est : "+paquetCarte.size());
         System.out.println("les cartes sont distribuÃ©es");
-        x.atoutChoixJeu();
+        action.atoutChoixJeu();
         
     }
 
@@ -306,7 +306,7 @@ import java.util.*;
         }
     }
 
-    public void atoutPointJeu(String atout){
+    public void atoutPointJeu(){
         Jeu x = new Jeu();
         for(Carte carte : paquetCarte){
             x.pointParAtoutJeu(carte);
