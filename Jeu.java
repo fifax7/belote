@@ -1,9 +1,12 @@
+package h;
+
 import java.util.*;
 
 
 public class Jeu {
-	/* on cree un paquet de carte */
-    public ArrayList<Carte> paquetCarte = new ArrayList<Carte>();  
+
+    /* on cree un paquet de carte */
+    public ArrayList<Carte> paquetCarte = new ArrayList<Carte>();
     /*on cree un paquet pour chaque joueur*/
     public ArrayList<Carte> joueur1 = new ArrayList<Carte>();
     public ArrayList<Carte> joueur2 = new ArrayList<Carte>();
@@ -11,11 +14,11 @@ public class Jeu {
     public ArrayList<Carte> joueur4 = new ArrayList<Carte>();
     /*on cree une liste de joueur pour connaitre l'ordre de passage */
     public ArrayList<ArrayList<Carte>> joueurs = new ArrayList<ArrayList<Carte>>();
-   
+
     /*on cree les deux equipes*/
     public ArrayList<ArrayList<Carte>> premiereEquipe = new ArrayList<ArrayList<Carte>>();
     public ArrayList<ArrayList<Carte>> deuxiemeEquipe = new ArrayList<ArrayList<Carte>>();
-    
+
 
     /* on cree une liste qui copie la liste des joueurs*/
     /*qui changera en fonction des tours*/
@@ -58,76 +61,78 @@ public class Jeu {
 
     public String atout = "rien";
 
+
     public void jeuJeu(){
         /*deroulement du jeu*/
         System.out.println("dÃ©but du jeu");
         Jeu action = new Jeu() ;
-        action.preparerjeu();
-        System.out.println("equipe la taille du paquet est : "+paquetCarte.size());
+        action.preparerjeu(this);
+
+        System.out.println("equipe la taille du paquet est : "+action.paquetCarte.size());
         System.out.println("le jeu est preparÃ©");
 
-        action.preparerEquipeJeu();
+        action.preparerEquipeJeu(this);
         System.out.println("les equipes sont preparÃ©es");
-        System.out.println("1 la taille du paquet est : "+paquetCarte.size());
-        action.distribuerIerTourJeu();
-        System.out.println("1 la taille du paquet est : "+paquetCarte.size());
+        System.out.println("1 la taille du paquet est : "+action.paquetCarte.size());
+        action.distribuerIerTourJeu(this);
+        System.out.println("1 la taille du paquet est : "+action.paquetCarte.size());
         System.out.println("les cartes sont distribuÃ©es");
-        action.atoutChoixJeu();
-        
+        action.atoutChoixJeu(this);
+
     }
 
-    public void preparerjeu(){
+    public void preparerjeu( Jeu jeu){
         /* met les cartes dans le paquet et le melange */
 
 
-    
-        paquetCarte.add(asCo);
-        paquetCarte.add(asCa);
-        paquetCarte.add(asP);
-        paquetCarte.add(asT);
 
-        paquetCarte.add(roiCo);
-        paquetCarte.add(roiCa);
-        paquetCarte.add(roiP);
-        paquetCarte.add(roiT);
+        this.paquetCarte.add(asCo);
+        this.paquetCarte.add(asCa);
+        this.paquetCarte.add(asP);
+        this.paquetCarte.add(asT);
 
-        paquetCarte.add(dameCo);
-        paquetCarte.add(dameCa);
-        paquetCarte.add(dameP);
-        paquetCarte.add(dameT);
+        this.paquetCarte.add(roiCo);
+        this.paquetCarte.add(roiCa);
+        this.paquetCarte.add(roiP);
+        this.paquetCarte.add(roiT);
 
-        paquetCarte.add(valaisCo);
-        paquetCarte.add(valaisCa);
-        paquetCarte.add(valaisP);
-        paquetCarte.add(valaisT);
+        this.paquetCarte.add(dameCo);
+        this.paquetCarte.add(dameCa);
+        this.paquetCarte.add(dameP);
+        this.paquetCarte.add(dameT);
 
-        paquetCarte.add(dixCo);
-        paquetCarte.add(dixCa);
-        paquetCarte.add(dixP);
-        paquetCarte.add(dixT);
+        this.paquetCarte.add(valaisCo);
+        this.paquetCarte.add(valaisCa);
+        this.paquetCarte.add(valaisP);
+        this.paquetCarte.add(valaisT);
 
-        paquetCarte.add(neufCo);
-        paquetCarte.add(neufCa);
-        paquetCarte.add(neufP);
-        paquetCarte.add(neufT);
+        this.paquetCarte.add(dixCo);
+        this.paquetCarte.add(dixCa);
+        this.paquetCarte.add(dixP);
+        this.paquetCarte.add(dixT);
 
-        paquetCarte.add(huitCo);
-        paquetCarte.add(huitCa);
-        paquetCarte.add(huitP);
-        paquetCarte.add(huitT);
+        this.paquetCarte.add(neufCo);
+        this.paquetCarte.add(neufCa);
+        this.paquetCarte.add(neufP);
+        this.paquetCarte.add(neufT);
 
-        paquetCarte.add(septCo);
-        paquetCarte.add(septCa);
-        paquetCarte.add(septP);
-        paquetCarte.add(septT);
+        this.paquetCarte.add(huitCo);
+        this.paquetCarte.add(huitCa);
+        this.paquetCarte.add(huitP);
+        this.paquetCarte.add(huitT);
 
-       Collections.shuffle(paquetCarte);
-       System.out.println("preparer la taille du paquet est : "+paquetCarte.size());
+        this.paquetCarte.add(septCo);
+        this.paquetCarte.add(septCa);
+        this.paquetCarte.add(septP);
+        this.paquetCarte.add(septT);
+
+        Collections.shuffle(this.paquetCarte);
+        System.out.println("preparer la taille du paquet est : "+this.paquetCarte.size());
 
 
     }
-    
-    public void preparerEquipeJeu(){
+
+    public void preparerEquipeJeu(Jeu jeu){
         premiereEquipe.add(joueur1);
         premiereEquipe.add(joueur3);
         deuxiemeEquipe.add(joueur2);
@@ -143,22 +148,23 @@ public class Jeu {
 
     }
 
-    public void distribuerCarte(ArrayList<Carte> joueur, int nb){
-        /* donne un nombre nb de carte au joueur joueur */            
+    public void distribuerCarte(ArrayList<Carte> joueur, int nb, Jeu jeu){
+        /* donne un nombre nb de carte au joueur joueur */
         //System.out.println("je donne : " + nb+" carte");
-        for(int i=0; i<nb ; i++){ 
-           //System.out.println("tiens une carte");
+        for(int i=0; i<nb ; i++){
+            //System.out.println("tiens une carte");
             //System.out.println(i);
 
+            System.out.println("taille paquet :"+this.paquetCarte);
             joueur.add(paquetCarte.get(0));
             paquetCarte.remove(paquetCarte.get(0));
             System.out.println(paquetCarte.size());
         }
     }
 
-    public void distribuerIerTourJeu(){
-           /*distribue les cartes du premier tour donc 3 cartes puis 2 cartes*/
-        Jeu t = new Jeu() ;
+    public void distribuerIerTourJeu(Jeu jeu){
+        /*distribue les cartes du premier tour donc 3 cartes puis 2 cartes*/
+
 
         // System.out.println(" je distribue 3 cartes ");
         // System.out.println("la taille joueurs"+joueurs.size());
@@ -169,18 +175,18 @@ public class Jeu {
         //     System.out.println(joueur);
         // }
         System.out.println("je donne les cartes premier tour");
-         int compteur=0;
+        int compteur=0;
 
         for(ArrayList<Carte> joueur : joueurs){
             // System.out.println(" tiens 3 cartes ");
-             compteur=compteur+1;
-            t.distribuerCarte(joueur, 3);
+            compteur=compteur+1;
+            this.distribuerCarte(joueur, 3,this);
         }
         System.out.println(compteur);
 
-        for(ArrayList<Carte> joueur : joueurs){        
+        for(ArrayList<Carte> joueur : joueurs){
             // System.out.println(" je distribue 2 cartes ");
-            t.distribuerCarte(joueur, 2);
+            this.distribuerCarte(joueur, 2, this);
         }
         // for(ArrayList<Carte> joueur : joueurs){
         //     for(Carte carte : joueur){
@@ -193,78 +199,79 @@ public class Jeu {
 
 
     }
-    public void atoutChoixJeu(){
+    public void atoutChoixJeu(Jeu jeu){
         /* montre les cartes au joueur et la carte au centre, leur demande si il veulent prendre */
         /*si ils prennent, donne la carte et donne les cartes manquantes aux joueurs */
         System.out.println("la taille du paquet est : "+paquetCarte.size());
-        Jeu t = new Jeu();
+
+
         String str= "pas encore" ;
         System.out.println("la taille du paquet est : "+paquetCarte.size());
         System.out.println("l atout est");
         boolean bouclestop = true;
-        for(int tour=0;tour<2; tour++) { 
-	        for(ArrayList<Carte> joueurss : joueurs){
-	            while (!str.equals("oui")&&!str.equals("non")&&bouclestop){
-		            System.out.println(paquetCarte.get(0).toString());
-		            System.out.println("------------");
-		            System.out.println("tu a : ");
-		            t.montrerCarteJeu(joueurss);		          
-		            System.out.println("voulez vous prendre ?");
+        for(int tour=0;tour<2; tour++) {
+            for(ArrayList<Carte> joueurss : joueurs){
+                while (!str.equals("oui")&&!str.equals("non")&&bouclestop){
+                    System.out.println(paquetCarte.get(0).toString());
+                    System.out.println("------------");
+                    System.out.println("tu a : ");
+                    this.montrerCarteJeu(joueurss);
+                    System.out.println("voulez vous prendre ?");
                     System.out.println(str);
                     System.out.println(atout);
-		            str= saisieUtilisateur.next();
+                    str= saisieUtilisateur.next();
                     System.out.println(str);System.out.println(str);
                     if(str.equals("oui")){
                         bouclestop= false;
                         System.out.println("je donne la carte du milieu");
                         System.out.println("la taille du paquet est : "+paquetCarte.size());
-		                t.distribuerCarte(joueurss, 1);
+                        this.distribuerCarte(joueurss, 1, this);
                         System.out.println("je donne les autres cartes");
-		                t.distribuerdemeTour();
+                        this.distribuerdemeTour();
                     }
-		            if(tour==0) {
-		                	atout = paquetCarte.get(0).getMotif();
-		                }
-		            if(tour==1&&str.equals("oui")) {
-		                	atout = saisieUtilisateur.next();
-                        }
-		        }
+                    if(tour==0) {
+                        atout = paquetCarte.get(0).getMotif();
+                    }
+                    if(tour==1&&str.equals("oui")) {
+                        atout = saisieUtilisateur.next();
+                    }
+                }
                 str="rien";
                 System.out.println("premier joueur");
-		    }
-	           
+            }
+
         }
     }
     public void distribuerdemeTour(){
         /*distribue les cartes pour que tout les joueurs aient 8 cartes */
         Jeu t = new Jeu() ;
         for(ArrayList<Carte> joueur : joueurs){
-            t.distribuerCarte(joueur, 8-joueur.size());
-        } 
+            t.distribuerCarte(joueur, 8-joueur.size(), this);
+        }
     }
     public void tourJeu() {
-    	/* deroulement d'un tour */
-    	/* in progress */
-    	Jeu t = new Jeu();
+        /* deroulement d'un tour */
+        /* in progress */
+        Jeu t = new Jeu();
         t.premierjoueurJeu(joueurstour.get(0));
         for(int i = 1 ; i<4;i++){
             t.autresjoueurJeu(joueurstour.get(i));
         }
     }
-    		
-    	
+
+
     public void montrerCarteJeu(ArrayList<Carte> joueur) {
-    	/*montre au joueur ces cartes */
-    	System.out.println("tu a : ");
-    	for(Carte i: joueur ){
+        /*montre au joueur ces cartes */
+        System.out.println("tu a : ");
+        for(Carte i: joueur ){
             System.out.println(i.toString());  }
     }
     public void premierjoueurJeu(ArrayList<Carte> joueur){
         /*le premier joueur choisit la carte au centre */
         Jeu t =new Jeu();
         t.montrerCarteJeu(joueur);
-    	System.out.println("que veux tu jouer ?");
-    	int str= saisieUtilisateur.nextInt();
+        System.out.println("que veux tu jouer ?");
+        int str= saisieUtilisateur.nextInt();
         plateau.add(joueur.get(str));
         joueur.remove(plateau.get(0));
 
@@ -276,32 +283,32 @@ public class Jeu {
         System.out.println("voici tes cartes");
         t.montrerCarteJeu(joueur);
         boolean bouclestop = true;
-        
+
         int str= saisieUtilisateur.nextInt();
 
         if (!plateau.get(0).getMotif().equals(joueur.get(str).getMotif())){
             for (int i=0 ; i<joueur.size() && bouclestop ; i++ ){
                 if (joueur.get(i).getMotif().equals(plateau.get(0).getMotif()) ){
                     System.out.println("tu ne peut pas jouer ca ");
-                     bouclestop = false;
-                    
+                    bouclestop = false;
+
                 }
             }
             if(bouclestop&&joueur.get(str).getMotif().equals(atout)){
-                    /* to do */
-                    /* gerer si c'est bien une carte atout */
-                    /*si oui regarder si il ne dois pas jouer au dessus d un autres atout */
-            	
-            } 
+                /* to do */
+                /* gerer si c'est bien une carte atout */
+                /*si oui regarder si il ne dois pas jouer au dessus d un autres atout */
+
+            }
             if(bouclestop){
                 for (int i=0 ; i<joueur.size() && bouclestop ; i++ ){
                     /* si tu as un atout tu ne peux pas pisser */
                     /* sauf si c'est le joueur de ton equipe qui gagne */
                     if (joueur.get(i).getMotif().equals(atout) ){
                         System.out.println("tu ne peut pas jouer ca ");
-                         bouclestop = false;
-                    } 
-                }      
+                        bouclestop = false;
+                    }
+                }
             }
         }
     }
@@ -314,12 +321,12 @@ public class Jeu {
         for(ArrayList<Carte> joueurss : joueurs){
             for(Carte carte : joueurss){
                 x.pointParAtoutJeu(carte);
-            }   
+            }
         }
 
     }
     public void pointParAtoutJeu(Carte carte){
-        if (carte.getMotif().equals(atout)){    
+        if (carte.getMotif().equals(atout)){
             if (carte.getNb().equals("valais")){
                 carte.setPoint(20);
 
@@ -328,6 +335,7 @@ public class Jeu {
                 carte.setPoint(14);
 
             }
-    }   }
+        }   }
 
 }
+
